@@ -57,7 +57,7 @@ function webpackConfig(target, mode) {
   if (target === 'var') {
     options.output.library = 'Painterro';
     options.output.libraryExport = 'default';
-    options.target = 'browserslist';
+    //options.target = ['web', 'es5']; // Updated target configuration
     options.module.rules.push({
       test: /\.js$/,
       loader: 'babel-loader',
@@ -72,7 +72,7 @@ function webpackConfig(target, mode) {
       }
     });
   } else {
-    options.target = 'es2020';
+    //options.target = ['web', 'es2020']; // Updated target configuration
   }
   if (mode === 'development') {
     options = {

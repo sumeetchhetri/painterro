@@ -10,7 +10,7 @@ export default class PainterroSelecter {
     this.shown = false;
     this.area = {
       el: main.toolContainer,
-      rect: document.querySelector(`#${main.id} .ptro-crp-rect`),
+      rect: document.querySelector(`#${CSS.escape(main.id)} .ptro-crp-rect`),
     };
     this.imagePlaced = false;
     this.areaionCallback(false);

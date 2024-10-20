@@ -1,5 +1,5 @@
 .ptro-wrapper {
-    position: absolute;
+    /*position: absolute;*/
     top: 0;
     left: 0;
     right: 0;
@@ -125,12 +125,12 @@
     border: 1px solid black;
     width: 6px;
     height: 6px;
-    position: absolute;
+    /*position: absolute;*/
     z-index: 10;
 }
 
 .ptro-wrapper .ptro-crp-el {
-    position: absolute;
+    /*position: absolute;*/
 }
 
 .ptro-wrapper .ptro-substrate {
@@ -138,7 +138,7 @@
     background-image: url("checkers.svg");
     background-size: 32px 32px;
     z-index: -1;
-    position: absolute;
+    /*position: absolute;*/
 }
 
 .ptro-wrapper .ptro-close-color-picker {
@@ -155,7 +155,7 @@
 }
 
 .ptro-wrapper .ptro-crp-rect {
-    position: absolute;
+    /*position: absolute;*/
     background-color: rgba(225, 225, 225, .5);
     border: 1px dashed black;
     cursor: move;
@@ -171,7 +171,7 @@
 }
 
 .ptro-wrapper .ptro-crp-tl {
-    position: absolute;
+    /*position: absolute;*/
     top: 0;
     left: 0;
     margin: -4px 0 0 -4px;
@@ -179,7 +179,7 @@
 }
 
 .ptro-wrapper .ptro-crp-bl {
-    position: absolute;
+    /*position: absolute;*/
     left: 0;
     bottom: 0;
     margin: 0 0 -4px -4px;
@@ -187,7 +187,7 @@
 }
 
 .ptro-wrapper .ptro-crp-br {
-    position: absolute;
+    /*position: absolute;*/
     right: 0;
     bottom: 0;
     margin: 0 -4px -4px 0;
@@ -195,7 +195,7 @@
 }
 
 .ptro-wrapper .ptro-crp-tr {
-    position: absolute;
+    /*position: absolute;*/
     right: 0;
     top: 0;
     margin: -4px -4px 0 0;
@@ -204,7 +204,7 @@
 
 
 .ptro-wrapper .ptro-crp-l {
-    position: absolute;
+    /*position: absolute;*/
     top: 50%;
     left: 0;
     margin: -4px 0 0 -4px;
@@ -212,7 +212,7 @@
 }
 
 .ptro-wrapper .ptro-crp-t {
-    position: absolute;
+    /*position: absolute;*/
     top: 0;
     left: 50%;
     margin: -4px 0 0 -4px;
@@ -220,7 +220,7 @@
 }
 
 .ptro-wrapper .ptro-crp-r {
-    position: absolute;
+    /*position: absolute;*/
     top: 50%;
     right: 0;
     margin: -4px -4px 0 0 ;
@@ -228,7 +228,7 @@
 }
 
 .ptro-wrapper .ptro-crp-b {
-    position: absolute;
+    /*position: absolute;*/
     left: 50%;
     bottom: 0;
     margin: 0 0 -4px -4px;
@@ -261,7 +261,7 @@
 
 
 .ptro-wrapper .ptro-common-widget-wrapper {
-    position: absolute;
+    /*position: absolute;*/
     background-color: rgba(0, 0, 0, 0.6);
     top: 0;
     bottom: 0;
@@ -387,7 +387,7 @@ span.ptro-color-alpha-regulator {
     display: block;
     margin-top: -5px;
     margin-left: 5px;
-    position: absolute;
+    /*position: absolute;*/
     width: 0;
     height: 0;
     border-left: 5px solid transparent;
@@ -432,7 +432,7 @@ select.ptro-input {
 .ptro-wrapper .ptro-zoomer {
     border-top:1px solid white;
     border-left:1px solid white;
-    position: absolute;
+    /*position: absolute;*/
     z-index: 2000;
     display: none;
 }
@@ -473,10 +473,10 @@ select.ptro-input {
 }
 .ptro-text-tool-buttons {
     display: flex;
-    position: absolute;
+    /*position: absolute;*/
 }
 .ptro-text-tool-input-wrapper {
-    position: absolute;
+    /*position: absolute;*/
 }
 
 span.ptro-btn-color-checkers {
@@ -568,7 +568,7 @@ input.ptro-pixel-size-input {
     padding: 40px;
 }
 .ptro-paster-select-wrapper {
-    position: absolute;
+    /*position: absolute;*/
     top: 0;
     left: 0;
     right: 0;
@@ -629,7 +629,7 @@ i.mce-i-painterro:before, span.mce_painterro:before {
 }
 
 .ptro-scroller {
-    position: absolute;
+    /*position: absolute;*/
     top: 0;
     left: 0;
     right: 0;

@@ -25,7 +25,7 @@ import { set } from 'lodash';
 
 class PainterroProc {
   constructor(params) {
-    const element =document.querySelector(`#${params.id}`) || document.getElementById('app');
+    const element =document.querySelector(`#${CSS.escape(params.id)}`) || document.getElementById('app');
     this.customEvents = new CustomEvents(element);
     addDocumentObjectHelpers();
 
@@ -629,15 +629,17 @@ class PainterroProc {
         Filters.html(this) +
         this.inserter.html()}`;
     this.baseEl.appendChild(this.wrapper);
-    this.scroller = this.doc.querySelector(`#${this.id}-wrapper .ptro-scroller`);
+    this.scroller = this.doc.querySelector(`#${CSS.escape(this.id)}-wrapper .ptro-scroller`);
     this.bar = this.doc.createElement('div');
     this.bar.id = `${this.id}-bar`;
     this.bar.className = 'ptro-bar ptro-color-main';
     this.fileInputId = genId();
+    let infcls_ = '';
+    if(params['info']!==true) infcls_ = 'hidden';
     this.bar.innerHTML =
       `<div>${bar}` +
       '<span class="ptro-tool-controls"></span>' +
-      '<span class="ptro-info"></span>' +
+      '<span class="ptro-info '+infcls_+'"></span>' +
       `<span class="ptro-bar-right">${rightBar}</span>` +
       `<input id="${this.fileInputId}" type="file" style="display: none" value="none" accept="image/x-png,image/png,image/gif,image/jpeg" /></div>`;
     if (this.isMobile) {
@@ -659,18 +661,21 @@ class PainterroProc {
       this.saveBtn.setAttribute('disabled', 'true');
     }
     this.body = this.doc.body;
-    this.info = this.doc.querySelector(`#${this.id}-bar .ptro-info`);
-    this.canvas = this.doc.querySelector(`#${this.id}-canvas`);
+    this.info = this.doc.querySelector(`#${CSS.escape(this.id)}-bar .ptro-info`);
+    this.canvas = this.doc.querySelector(`#${CSS.escape(this.id)}-canvas`);
     this.ctx = this.canvas.getContext('2d');
-    this.toolControls = this.doc.querySelector(`#${this.id}-bar .ptro-tool-controls`);
-    this.toolContainer = this.doc.querySelector(`#${this.id}-wrapper .ptro-crp-el`);
-    this.substrate = this.doc.querySelector(`#${this.id}-wrapper .ptro-substrate`);
+    this.toolControls = this.doc.querySelector(`#${CSS.escape(this.id)}-bar .ptro-tool-controls`);
+    this.toolContainer = this.doc.querySelector(`#${CSS.escape(this.id)}-wrapper .ptro-crp-el`);
+    this.substrate = this.doc.querySelector(`#${CSS.escape(this.id)}-wrapper .ptro-substrate`);
     this.zoomHelper = new ZoomHelper(this);
     this.zoomButtonActive = false;
     this.select = new PainterroSelecter(this, (notEmpty) => {
-      [this.toolByName.crop, this.toolByName.pixelize].forEach((c) => {
-        this.setToolEnabled(c, notEmpty);
-      });
+      if(this.params.hiddenTools.indexOf('crop') === -1) {
+        this.setToolEnabled(this.toolByName.crop, notEmpty);
+      }
+      if(this.params.hiddenTools.indexOf('pixelize') === -1) {
+        this.setToolEnabled(this.toolByName.pixelize, notEmpty);
+      }
     });
     if (this.params.backplateImgUrl) {
       this.tabelCell = this.canvas.parentElement;
@@ -700,8 +705,12 @@ class PainterroProc {
         this.saveBtn.removeAttribute('disabled');
         this.hasUnsaved = true;
       }
-      this.setToolEnabled(this.toolByName.undo, !state.first);
-      this.setToolEnabled(this.toolByName.redo, !state.last);
+      if(this.params.hiddenTools.indexOf('undo') === -1) {
+        this.setToolEnabled(this.toolByName.undo, !state.first);
+      }
+      if(this.params.hiddenTools.indexOf('redo') === -1) {
+        this.setToolEnabled(this.toolByName.redo, !state.last);
+      }
       if (this.params.onChange) {
         this.params.onChange.call(this, {
           image: this.imageSaver,
@@ -717,7 +726,7 @@ class PainterroProc {
     this.colorPicker = new ColorPicker(this, (widgetState) => {
       this.colorWidgetState[widgetState.target] = widgetState;
       this.doc.querySelector(
-        `#${this.id} .ptro-color-btn[data-id='${widgetState.target}']`).style['background-color'] =
+        `#${CSS.escape(this.id)} .ptro-color-btn[data-id='${widgetState.target}']`).style['background-color'] =
         widgetState.alphaColor;
       const palletRGB = HexToRGB(widgetState.palleteColor);
       if (palletRGB !== undefined) {
@@ -1396,7 +1405,7 @@ class PainterroProc {
       this.initText = document.createElement('div');
       this.initText.classList.add('init-text');
       this.wrapper.append(this.initText);
-      this.initText.innerHTML = '<div style="pointer-events: none;position:absolute;top:50%;width:100%;left: 50%; transform: translate(-50%, -50%)">' +
+      this.initText.innerHTML = '<div style="pointer-events: none;top:50%;width:100%;left: 50%; transform: translate(-50%, -50%)">' +
         `${this.params.initText}</div>`;
       this.initText.style.left = '0';
       this.initText.style.top = '0';
@@ -1404,7 +1413,7 @@ class PainterroProc {
       this.initText.style.bottom = '0';
       this.initText.style.pointerEvents = 'none';
       this.initText.style['text-align'] = 'center';
-      this.initText.style.position = 'absolute';
+      //this.initText.style.position = 'absolute';
       this.initText.style.color = this.params.initTextColor;
       this.initText.style['font-family'] = this.params.initTextStyle.split(/ (.+)/)[1];
       this.initText.style['font-size'] = this.params.initTextStyle.split(/ (.+)/)[0];
@@ -1426,7 +1435,7 @@ class PainterroProc {
 
   setColor(options){
     this.doc.querySelector(
-      `#${this.id} .ptro-color-btn[data-id='${options[0]}']`).style['background-color'] =
+      `#${CSS.escape(this.id)} .ptro-color-btn[data-id='${options[0]}']`).style['background-color'] =
       options[1].alphaColor;
     this.colorWidgetState = {...this.colorWidgetState, line: {
       target: options[0],
